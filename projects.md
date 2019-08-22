@@ -4,7 +4,7 @@ layout: page
 
 - [Todo Manager](https://pure-waters-97856.herokuapp.com/)
 
-![Todo Manager](https://github.com/YShu7/YShu7.github.io/blob/master/screenshots/todo_manager.jpg)
+![Todo Manager](https://github.com/YShu7/YShu7.github.io/blob/master/screenshots/todo_manager.png)
 
 - [SaveIt](https://cs2103-ay1819s1-t12-4.github.io/main)
 
