@@ -3,8 +3,6 @@ title: How to Choose Programming Language
 tags: Design
 ---
 
-###How to Choose Programming Language
-
 Factors to be considered:
 
 - Targeted Platform
