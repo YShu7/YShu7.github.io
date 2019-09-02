@@ -50,6 +50,6 @@ Instead of applying Kadane's Algorithm, we need to compute prefix sum of the 1-D
 
 ![Step 1](/assets/images/kadane-5.png)
 
-![Step 12](/assets/images/kadane-8.png)
+![Step 2](/assets/images/kadane-8.png)
 
 Find `M = ceil(S-K)` to find the smallest sub-rectangle to be eliminated. `S - M` is the result.
