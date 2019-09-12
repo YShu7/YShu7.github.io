@@ -1,6 +1,4 @@
 ---
-
-
 title: Kadane's Algorithms
 tags: LeetCode
 ---
