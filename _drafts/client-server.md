@@ -19,3 +19,12 @@
 
 - To choose which content is returned to the browser in response to request
 - PHP, Python, Ruby, C#, and NodeJS(JavaScript)
+
+#### VueJS
+
+- Cross platform
+
+#### jQuery
+
+- Cross platform
+- plugins
