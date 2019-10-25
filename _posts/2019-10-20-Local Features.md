@@ -140,6 +140,20 @@ Invariant to geometric transformations
 3. Find points whose surrounding window gave large corner response (*f*> threshold) 
 4. Take the points of local maxima, i.e., perform non-maximum suppression 
 
+##### Non-maximum Supression
+
+**(Simple) Non-Maximum Suppression**
+
+Iteratively search for “max” values, then zero-out everything in the surrounding window.
+
+Problem:
+
+- Uneven distribution of interest points in areas of higher contrast 
+
+**Adaptive Non-Maximum Suppression**
+
+Pick features which are both local maxima and whose response is significantly greater (e.g. 10%) than all neighbours within radius *r* 
+
 ##### Invariancy
 
 Thus Harris corner detection location is ***equivariant to translation,* and response is *invariant to translation*** 
@@ -157,6 +171,22 @@ It is ***not invariant* to scaling of intensity** $I' \rightarrow \alpha I$, i.e
 
 Harris corners are invariant to geometric transformations such as translation, rotation, semi-invariant to photometric transformations (brightness changes but not contrast) and non-invariant to scaling 
 
+![](/assets/images/cv5-4.png)
+
+##### What happens to eigenvalues and eigenvectors when a patch rotates?
+
+- Eigenvectors represent the *direction* of maximum / minimum change in appearance, so they rotate *with the patch* 
+
+- Eigenvalues represent the corresponding *magnitude* of maximum/minimum change so they *stay constant* 
+
+Corner response is only dependent on the eigenvalues so is *invariant to* rotation Corner location is as before equivariant to rotation. 
+
+#### Harris Corners – Why so complicated?
+
+It is NOT enough to check for regions with lots of gradients in x and y.
+
+A diagonal line would satisfy that criteria
+
 #### What are Local Features Good For?
 
 - Matching in Computer Vision
@@ -166,3 +196,25 @@ Harris corners are invariant to geometric transformations such as translation, r
 - Augmented Reality
 - Object Recognition
 - Stereo Vision
+
+#### Automatic scale selection
+
+Harris corner detector is not scale invariant, so how can we detect if it's a conrner or an edge.
+
+When looking for corners, find the scale that gives a local maximum of *f*
+
+Cna use fixed window size with a Gaussian pyramid
+
+#### Laplacian of Gaussian (LoG)
+
+##### 1D
+
+![](/assets/images/cv5-5.png)
+
+Highest response when the signal has the same **characteristic scale** as the filter
+
+##### 2D
+
+![](/assets/images/cv5-6.png)
+
+very similar to a difference of Gaussians – i.e. a Gaussian minus a slightly smaller Gaussian
