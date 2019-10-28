@@ -1,3 +1,9 @@
+---
+title: Image Descriptors
+tags: [Computer Vision]
+mathjax: true
+---
+
 ### Image Descriptors
 
 Represent surrounding region mathematically
