@@ -153,11 +153,18 @@ Template Matching
 
 3. Score the candidate
 
-4. Resolve detections
+4. Resolve detections (NMS)
 
    - Rescore candidates based on entire set
 
    Threshold & apply non-maximum suppression
+
+##### Why scale the image and not the template?
+
+Template is complicated and **scale-specific**; unlikely to survive a resizing
+operation, so we scale input image instead.
+
+When it is simple, e.g. Viola-Jones, it is okay (and actually more efficient) to rescale the detector / template / features.
 
 ##### Evaluation
 
@@ -196,6 +203,12 @@ Trade-off between the **margin** and the **mistakes**
 - Training: learn an SVM for each pair of classes
 - Testing: each learned SVM “votes” for a class to assign to the test example
 
+##### Convert the Classification Score to Confidence Score
+
+$y = {1 \over 1 + e^{Ax+B}}$
+
+$A$ and $B$ are fitted based on classifier outputs (i.e. from validation data) s.t. the same classifications result
+
 **Pros**
 
 - Widely available and built into virtually any machine learning package Kernel-based framework is very powerful, flexible 
@@ -232,7 +245,7 @@ applying SVMs to window-based object detection using HoG (histogram of oriented 
 
    - Normalize wrt surrounding cells
    - Concatenate all cell responses from block into vector 
-   - Normalized vector
+   - Normalize vector
    - Extract responses from cell of interest
    - Do this 4x for each overlapping block
 
@@ -296,7 +309,7 @@ Slow to train but detection is very fast
 
 2. *Boosting* for feature selection
 
-   “Haar-like features” 
+   Features that are fast to compute - “Haar-like features” 
 
    - Differences of sums of intensity $Value = \sum (pixels~in~white~area) -\sum(pixels~in~black~area) $
    - Computed at different positions and scales within sliding window 
@@ -312,6 +325,16 @@ Slow to train but detection is very fast
 
    $h(x) = sign(\sum^M_{j=1}\alpha_jh_j(x))$
 
+   $h$: final strong learner
+
+   $x$: window
+
+   $\alpha_j$: learner weight
+
+   $h_j$: weak learner
+
+   Choose weak learner that minimizes error on the weighted training set, then reweight
+
 3. *Attentional cascade* for fast non-face window rejection
 
    Reject many nagative examples but detect almost all positive examples
@@ -322,6 +345,8 @@ Slow to train but detection is very fast
      - Test on a *validation set* 
    - If the overall false positive rate is not low enough, add another stage 
    - Use false positives from current stage as the negative training examples for the next stage 
+   
+   Chain classifiers that are progressively more complex and have lower false positive rates
 
 ##### Boosting vs. SVM
 
@@ -337,3 +362,15 @@ Slow to train but detection is very fast
 - Needs many training examples
 - Training is slow
 - Often doesn’t work as well as SVM (especially for many-class problems) 
+
+For 1 Mpix, to avoid having a false positive in every image, our false positive rate has to be less than $10^{-6}$
+
+##### Summary
+
+- Sliding window for search 
+- Features based on differences of intensity (gradient, wavelet, etc.) 
+  - Excellent results require careful feature design 
+- Boosting for feature selection 
+- Integral images, cascade for speed 
+- Bootstrapping to deal with many negative examples 
+
