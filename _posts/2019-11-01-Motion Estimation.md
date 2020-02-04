@@ -1,10 +1,16 @@
+---
+title: Motion Estimation
+tags: [Computer Vision]
+mathjax: true
+---
+
 ### Motion Estimation
 
 |                                  | Feature Matching                                             | Object Detection                                             |
 | -------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | scoring                          | **Feature matching** across pairs of images and not feature detection (e.g. cornerness score). <br/>A **lower score is a better match**, since we use distance measure for comparison. | Higher -> more likely to be an object                        |
 | threshold                        | Keep matches if **below** some threshold                     | Keep detections if above some threshold                      |
-| Precision<br/>$TP \over  TP+FP$  | How accurate are the feature pairs declared as matches?<br/>Lower threshold -> lower FP (also lower TP, but doesn't matter) -> higher precision | How accurate are the detections?<br/>Higher threshold -> lower FP -> high<br/>precision |
+| Precision<br/>$TP \over TP+FP$  | How accurate are the feature pairs declared as matches?<br/>Lower threshold -> lower FP (also lower TP, but doesn't matter) -> higher precision | How accurate are the detections?<br/>Higher threshold -> lower FP -> high<br/>precision |
 | Recall<br/>$TP \over TP+FN$      | Was the algorithm able to find all the actual pairs of features?<br/>Higher threshold -> more TP (again balanced in numerator and denominator) butalso lower FN -> higher recall | Could we find all the objects?<br/>Lower threshold -> less FN -> higher recall |
 | Specificity<br/>$TN \over TN+FP$ | Can the algorithm correctly disregard the features which are not part of any pair?<br/>Lower threshold -> lower FP, no impact on the TNs -> higher specificity |                                                              |
 
