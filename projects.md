@@ -25,3 +25,9 @@ layout: page
 ![Tasks](/assets/images/task_cats_tasks.png){:width="400px"}
 
 ![Bidding](/assets/images/task_cats_bidding.png){:width="400px"}
+
+- [Where is Waldo](https://github.com/YShu7/WhereIsWaldo)
+
+![Sequence](/assets/images/where_is_waldo-1.png){:width="400px"}
+
+![Result](/assets/images/where_is_waldo-2.png){:width="400px"}
