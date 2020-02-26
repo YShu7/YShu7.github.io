@@ -28,9 +28,9 @@ Edges correspond to extrema of derivative. Since images are discrete, we need to
 
 Horizontal gradients -> vertical lines
 
-$\begin{bmatrix} 1 & 0 & -1 \\ 2 & 0 & -2 \\ 1 & 0 & -1 \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix} * \begin{bmatrix} 1 & 0 & -1\end{bmatrix}$
+$\begin{bmatrix} 1 & 0 & -1 \\\ 2 & 0 & -2 \\\ 1 & 0 & -1 \end{bmatrix} = \begin{bmatrix} 1 \\\ 2 \\\ 1 \end{bmatrix} * \begin{bmatrix} 1 & 0 & -1\end{bmatrix}$
 
-$\begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix}$ is bulrring matrix
+$\begin{bmatrix} 1 \\\ 2 \\\ 1 \end{bmatrix}$ is bulrring matrix
 
 $\begin{bmatrix} 1 & 0 & -1\end{bmatrix}$ is 1D derivative filter
 
@@ -38,7 +38,7 @@ $\begin{bmatrix} 1 & 0 & -1\end{bmatrix}$ is 1D derivative filter
 
 Vertical gradients -> horizontal lines
 
-$\begin{bmatrix} 1 & 2 & 1 \\ 0 & 0 & 0 \\ -1 & -2 & -1 \end{bmatrix} = \begin{bmatrix} 1 \\ 0 \\ -1 \end{bmatrix} * \begin{bmatrix} 1 & 2 & 1\end{bmatrix}$
+$\begin{bmatrix} 1 & 2 & 1 \\\ 0 & 0 & 0 \\\ -1 & -2 & -1 \end{bmatrix} = \begin{bmatrix} 1 \\\ 0 \\\ -1 \end{bmatrix} * \begin{bmatrix} 1 & 2 & 1\end{bmatrix}$
 
 #### Computing Image Gradients
 

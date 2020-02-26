@@ -24,7 +24,7 @@ Algorithms to **mine, search, and interact** with visual data
 
 1. **Energy** transfer form sun, light bulb to scene to optical system
 2. Lens focuses **energy** onto sensor
-3. DIgital sensor measures amount of **energy**, convert light into electrical charge
+3. Digital sensor measures amount of **energy**, convert light into electrical charge
 
 Energy -> Exposure (Brightness)
 
@@ -72,21 +72,25 @@ Hue (色调): dominant wavelength in perceived light
 
 Saturation (饱和度): amount of white light mixed with the pure colour
 
-$H = ((G - B) / (V - min\{R, G, B\})) * 60°$	if $V = R$ and $G ≥ B$
+$H = ((G - B) / (V - min(R, G, B))) * 60°$	if $V = R$ and $G ≥ B$
 
-​     $= (((B - R)/ (V - min\{R, G, B\})) + 2) * 60°$	if $V = G$
+​     $= (((B - R)/ (V - min(R, G, B))) + 2) * 60°$	if $V = G$
 
-​     $= (((R - G)/ (V - min\{R, G, B\})) + 4) * 60°$	if $V = B$
+​     $= (((R - G)/ (V - min(R, G, B))) + 4) * 60°$	if $V = B$
 
-​     $= (((R - B)/ (V - min\{R, G, B\})) + 5) * 60°$	if $V = R$ and $G ≤ B$
+​     $= (((R - B)/ (V - min(R, G, B))) + 5) * 60°$	if $V = R$ and $G ≤ B$
 
-$S = (V - min\{R, G, B\}) / V$	$S  \in [0, 1]$
+$S = (V - min(R, G, B)) / V$ for $S  \in [0, 1]$
 
-$V = max \{ R, G, B\}$	$V \in [0, 255]$
+$V = max(R, G, B)$ for $V \in [0, 255]$
 
 #### YCbCr Colour Space
 
+Y is the same as rgb to greyscale conversion
+
 #### L\*a\*b\* Colour Space
+
+L is the same as rgb to greyscale conversion
 
 ### Colour-Based Image Retrival
 
@@ -126,7 +130,7 @@ Clipping behaviour
 
 #### Adjusting Contrast
 
-$x_{ij} = a \bullet p_{ij}$
+$x_{ij} = a \times p_{ij}$
 
 #### Image Normalization (Whitening)
 
@@ -136,7 +140,7 @@ Resulting image pixels are 0 mean, unit variance
 
 #### Gamma Mapping
 
-$x_{ij} = 255 \bullet (p_{ij} / 255)^\gamma$	$\gamma > 0$
+$x_{ij} = 255 \cdot (p_{ij} / 255)^\gamma$	$\gamma > 0$
 
 When $\gamma$ <1: increasing mid-levels increases the dynamics in the dark areas
 
@@ -192,7 +196,7 @@ The larger the filter is, the more blurred the image is.
 
 ##### Linear Filtering
 
-Different weights (**Cross-correlation**): $\sum_{u=-k}^k\sum_{v=-k}^kf_{uv}\bullet p_{i+u, j+v}$
+Different weights (**Cross-correlation**): $\sum_{u=-k}^k\sum_{v=-k}^kf_{uv}\cdot p_{i+u, j+v}$
 
 ​	$f_{uv}$ is the weight depends on neighbour's relative position wrt $p_{ij}$
 
@@ -211,7 +215,7 @@ $\delta^2$ variance determines extent of smoothing
 Sort the neighbours of a pixel with itself, pick the median value as its new value
 
 - No new pixel values introduced
-- Removes spikes: good fro impulse, salt & pepper noise
+- Removes spikes: good for impulse, salt & pepper noise
 
 #### Possibilities for Boundaries
 
@@ -227,14 +231,19 @@ Sort the neighbours of a pixel with itself, pick the median value as its new val
 
 3. Find patterns (template matching)
 
-### Convolution
+### Convolution vs. Cross-correlation
 
 Flip the kernel in both dimensions, then apply cross-correlation
 
-$x_{ij} = \sum_{u=-k}^k\sum_{v=-k}^kf_{uv}\bullet p_{i-u, j-v}$
+**Convolution**
+
+$x_{ij} = \sum_{u=-k}^k\sum_{v=-k}^kf_{uv}\cdot p_{i-u, j-v}$
 
 $X = F * P$
 
-Cross-correlation: $\sum_{u=-k}^k\sum_{v=-k}^kf_{uv}\bullet p_{i+u, j+v}$
+**Cross-correlation**
+
+$x_{ij} = \sum_{u=-k}^k\sum_{v=-k}^kf_{uv}\cdot p_{i+u, j+v}$
 
 For Gaussian or box filter, they are the same
+
