@@ -1,5 +1,5 @@
 ---
-title: Linked List Cycle
+title: Find Minimum in Rotated Sorted Array
 tags: LeetCode
 ---
 

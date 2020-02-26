@@ -1,5 +1,5 @@
 ---
-title: Linked List Cycle
+title: Longest Repeating Character Replacement
 tags: LeetCode
 ---
 
