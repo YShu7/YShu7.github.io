@@ -60,9 +60,9 @@ $ = I(x,y) + I_xu + I_yv $
 
 $E(u, v) = \sum_{(x,y)\in W} [I_xu + I_yv]^2$
 
-$E(u, v) = Au^2 + 2Buv + Cv^2 = \begin{bmatrix} u & v\end{bmatrix}\begin{bmatrix} A & B \\ B & C \end{bmatrix}\begin{bmatrix} u \\ v\end{bmatrix}$
+$E(u, v) = Au^2 + 2Buv + Cv^2 = \begin{bmatrix} u & v\end{bmatrix}\begin{bmatrix} A & B \\\ B & C \end{bmatrix}\begin{bmatrix} u \\\ v\end{bmatrix}$
 
-Coefficients in **second moment matrix** $H = \begin{bmatrix} A & B \\ B & C \end{bmatrix}$ controls the shape of the resulting ellipse. 
+Coefficients in **second moment matrix** $H = \begin{bmatrix} A & B \\\ B & C \end{bmatrix}$ controls the shape of the resulting ellipse. 
 
 ![Eigen](/assets/images/cv5-1.png)
 
@@ -74,7 +74,7 @@ Ellipse axes length determined by the *eigenvalues* of *H*
 
 eigenvalue $\lambda_\pm={1\over2}[(h_{11} + h_{22}) \pm \sqrt{4h_{12}h_{21}+(h_{11}-h_{22})^2}]$
 
-eigenvectors  $\begin{bmatrix} h_{11}-\lambda & h_{12} \\ h_{21} & h_{22}-\lambda \end{bmatrix}\begin{bmatrix}x \\ y\end{bmatrix}$
+eigenvectors  $\begin{bmatrix} h_{11}-\lambda & h_{12} \\\ h_{21} & h_{22}-\lambda \end{bmatrix}\begin{bmatrix}x \\\ y\end{bmatrix}$
 
 - $x_{max}$ = direction of largest increase in $E$
 - $\lambda_{max}$ = amount of increase in direction $x_{max}$
@@ -95,9 +95,9 @@ $detM = \lambda_1\lambda_2$
 
 $traceM = \lambda_1 + \lambda_2$
 
-$det (\begin{bmatrix}a & b \\ c & d\end{bmatrix}) = ad-bc$
+$det (\begin{bmatrix}a & b \\\ c & d\end{bmatrix}) = ad-bc$
 
-$trace (\begin{bmatrix}a & b \\ c & d\end{bmatrix}) = a+d$
+$trace (\begin{bmatrix}a & b \\\ c & d\end{bmatrix}) = a+d$
 
 ##### “Cornerness” Functions
 
@@ -111,7 +111,7 @@ $trace (\begin{bmatrix}a & b \\ c & d\end{bmatrix}) = a+d$
 
 We *weight* derivatives based on its distance from the center pixel
 
-$H=\sum_{(x, y)\in W} w_{x, y} \begin{bmatrix} I_x^2 & I_xI_y \\ I_xI_y & I_y^2\end{bmatrix}$
+$H=\sum_{(x, y)\in W} w_{x, y} \begin{bmatrix} I_x^2 & I_xI_y \\\ I_xI_y & I_y^2\end{bmatrix}$
 
 #### Invariance and Equivariance
 
@@ -133,14 +133,14 @@ Invariant to geometric transformations
 
 - Eigenvalues based only on derivatives so cornerness is ***invariant*** 
 
-#### Harris Corner Detector
+### Harris Corner Detector
 
 1. Compute gradient at each point in the image 
 2. Compute *H* matrix for each image window to get their *cornerness* scores. 
 3. Find points whose surrounding window gave large corner response (*f*> threshold) 
 4. Take the points of local maxima, i.e., perform non-maximum suppression 
 
-##### Non-maximum Supression
+#### Non-maximum Supression
 
 **(Simple) Non-Maximum Suppression**
 
@@ -154,9 +154,9 @@ Problem:
 
 Pick features which are both local maxima and whose response is significantly greater (e.g. 10%) than all neighbours within radius *r* 
 
-##### Invariancy
+#### Invariancy
 
-Thus Harris corner detection location is ***equivariant to translation,* and response is *invariant to translation*** 
+Thus Harris corner detection location is **equivariant to translation**, and response is **invariant to translation** 
 
 Corner response depends only eigenvalues so is ***invariant to* rotation**
 
@@ -167,27 +167,29 @@ It is ***not invariant* to scaling of intensity** $I' \rightarrow \alpha I$, i.e
 
 ***Not invariant* to scaling**
 
-##### Conclusion
+#### Conclusion
 
 Harris corners are invariant to geometric transformations such as translation, rotation, semi-invariant to photometric transformations (brightness changes but not contrast) and non-invariant to scaling 
 
 ![](/assets/images/cv5-4.png)
 
-##### What happens to eigenvalues and eigenvectors when a patch rotates?
+#### What happens to eigenvalues and eigenvectors when a patch rotates?
 
 - Eigenvectors represent the *direction* of maximum / minimum change in appearance, so they rotate *with the patch* 
 
 - Eigenvalues represent the corresponding *magnitude* of maximum/minimum change so they *stay constant* 
 
-Corner response is only dependent on the eigenvalues so is *invariant to* rotation Corner location is as before equivariant to rotation. 
+Corner response is only dependent on the eigenvalues so is *invariant to* rotation 
 
-#### Harris Corners – Why so complicated?
+Corner location is as before equivariant to rotation. 
+
+### Harris Corners – Why so complicated?
 
 It is NOT enough to check for regions with lots of gradients in x and y.
 
 A diagonal line would satisfy that criteria
 
-#### What are Local Features Good For?
+### What are Local Features Good For?
 
 - Matching in Computer Vision
 - Estimating Correspondence between Views
@@ -197,23 +199,23 @@ A diagonal line would satisfy that criteria
 - Object Recognition
 - Stereo Vision
 
-#### Automatic scale selection
+### Automatic scale selection
 
-Harris corner detector is not scale invariant, so how can we detect if it's a conrner or an edge.
+Harris corner detector is not scale invariant, so how can we detect if it's a corner or an edge.
 
 When looking for corners, find the scale that gives a local maximum of *f*
 
-Cna use fixed window size with a Gaussian pyramid
+Can use fixed window size with a Gaussian pyramid
 
-#### Laplacian of Gaussian (LoG)
+### Laplacian of Gaussian (LoG)
 
-##### 1D
+#### 1D
 
 ![](/assets/images/cv5-5.png)
 
 Highest response when the signal has the same **characteristic scale** as the filter
 
-##### 2D
+#### 2D
 
 ![](/assets/images/cv5-6.png)
 

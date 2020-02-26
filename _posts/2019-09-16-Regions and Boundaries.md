@@ -136,7 +136,7 @@ Examples:
 
 1. Rectangular: $\phi(x) = 1$ for  $a ≤x≤b$
 2. Gaussian: $\phi(x) = e^{-{x^2 \over 2\sigma^2}}$
-3. Epanechnikov: $\phi(x) = {3 \over 4}(1-x^2)$ for $|x|≤1$
+3. Epanechnikov: $\phi(x) = {3 \over 4}(1-x^2)$ for $\mid x\mid ≤1$
 
 ##### Technical Details
 
@@ -158,7 +158,7 @@ We expect $\nabla \hat f(x)$ to be 0
 
 ${2c_{k,d} \over nh^{d+2}} [\sum_{i=1}^ng(\| {x-x_i \over h} \|^2)]$ unlikely to be 0, because it's proportional to density estimate at x
 
-**The mean shif procedure from a give point $x_t$ is:**
+**The mean shift procedure from a give point $x_t$ is:**
 
 1. Compute the mean shift vector m: $[{\sum_{i=1}^n x_ig(\| {x-x_i \over h} \|^2) \over \sum_{i=1}^n g(\| {x-x_i \over h} \|^2)} -x]$
 

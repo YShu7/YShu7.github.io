@@ -4,14 +4,12 @@ tags: [Computer Vision]
 mathjax: true
 ---
 
-### Motion Estimation
-
 |                                  | Feature Matching                                             | Object Detection                                             |
 | -------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | scoring                          | **Feature matching** across pairs of images and not feature detection (e.g. cornerness score). <br/>A **lower score is a better match**, since we use distance measure for comparison. | Higher -> more likely to be an object                        |
 | threshold                        | Keep matches if **below** some threshold                     | Keep detections if above some threshold                      |
 | Precision<br/>$TP \over TP+FP$  | How accurate are the feature pairs declared as matches?<br/>Lower threshold -> lower FP (also lower TP, but doesn't matter) -> higher precision | How accurate are the detections?<br/>Higher threshold -> lower FP -> high<br/>precision |
-| Recall<br/>$TP \over TP+FN$      | Was the algorithm able to find all the actual pairs of features?<br/>Higher threshold -> more TP (again balanced in numerator and denominator) butalso lower FN -> higher recall | Could we find all the objects?<br/>Lower threshold -> less FN -> higher recall |
+| Recall<br/>$TP \over TP+FN$      | Was the algorithm able to find all the actual pairs of features?<br/>Higher threshold -> more TP (again balanced in numerator and denominator) but also lower FN -> higher recall | Could we find all the objects?<br/>Lower threshold -> less FN -> higher recall |
 | Specificity<br/>$TN \over TN+FP$ | Can the algorithm correctly disregard the features which are not part of any pair?<br/>Lower threshold -> lower FP, no impact on the TNs -> higher specificity |                                                              |
 
 If threshold too high:
@@ -20,9 +18,9 @@ high precision: few false positives
 
 low recall: many false negatives
 
-#### Motion Estimation
+### Motion Estimation
 
-##### Key Assumptions
+#### Key Assumptions
 
 - Color Constancy 
 
@@ -40,7 +38,7 @@ low recall: many false negatives
 
   $I(x + u\delta t, y+v\delta t, t + \delta t) = I(x, y, t)$
 
-##### Approach
+#### Approach
 
 Look for nearby pixels with the same color
 
@@ -59,15 +57,15 @@ $I_xu + I_yv + I_t = 0$
 | global method<br/>(dense)                                    | local method<br/>(sparse)                                    |
 | Direct, dense methods<br/>- Directly recover image motion at each pixel from spatio-temporal image brightness variations<br/>- Dense motion fields, but sensitive to appearance variations<br/>- Suitable for vedio and when image motion is small | Feature-based methods<br/>- Extract visual features (corners, textured area) and track them over multiple frames<br/>- Sparse motion fields, but more robust tracking<br/>- Suitable when image motion is large (10s of pixels) |
 
-#### Lucas-Kanade Optical Flow
+### Lucas-Kanade Optical Flow
 
-##### Assumption
+#### Assumption
 
 $I_xu + I_yv + I_t = 0$
 
 Assume that the surrounding patch has **constant flow**
 
-$\begin{bmatrix} I_x(p_1) & I_y(p_1) \\ I_x(p_2) & I_y(p_2) \\ \vdots &\vdots \\ I_x(p_{25}) & I_y(p_{25})\end{bmatrix} \begin{bmatrix}u \\ v\end{bmatrix} = -\begin{bmatrix} I_t(p_1) \\ I_t(p_2) \\ \vdots \\ I_t(p_25) \end{bmatrix}$
+$\begin{bmatrix} I_x(p_1) & I_y(p_1) \\\ I_x(p_2) & I_y(p_2) \\\ \vdots &\vdots \\\ I_x(p_{25}) & I_y(p_{25})\end{bmatrix} \begin{bmatrix}u \\\ v\end{bmatrix} = -\begin{bmatrix} I_t(p_1) \\\ I_t(p_2) \\\ \vdots \\\ I_t(p_25) \end{bmatrix}$
 
 $Ax = b$
 
@@ -85,21 +83,21 @@ $x = (A^TA)^{-1}A^Tb$
 > - Corners are regions with two different directions of gradient (at least)
 > - Corners are good places to compute flow! 
 
-##### Aperture Problem
+#### Aperture Problem
 
 Small visible image patch of line cannot tell the direction of movement
 
 Want patches with **different gradients** to the avoid aperture problem 
 
-##### Aliasing
+#### Aliasing
 
 Temporal aliasing causes ambiguities since images can have many pixels with the same intensity and lead to wrong ‘correspondences’
 
-##### Coarse-to-Fine Optical Flow Estimation
+#### Coarse-to-Fine Optical Flow Estimation
 
 run iterative L-K -> wrap & upsample -> run iterative L-K -> ...
 
-#### Horn-Schunck Optical Flow
+### Horn-Schunck Optical Flow
 
 For every pixel,
 
@@ -125,7 +123,7 @@ Compute partial derivative, derive update equations
 - Recognizing events and activities 
 - Improving video quality
 
-##### Errors in assumptions 
+#### Errors in assumptions 
 
 - A point does not move like (all) its neighbors, e.g. at object boundaries 
 - Brightness constancy does not (always) hold 

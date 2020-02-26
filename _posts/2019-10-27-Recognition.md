@@ -4,9 +4,7 @@ tags: [Computer Vision]
 mathjax: true
 ---
 
-### Recognition
-
-#### Feature Matching
+### Feature Matching
 
 An object as a collection of bag of features
 
@@ -27,7 +25,7 @@ An object as a collection of bag of features
 
 - No spatial reasoning
 
-##### Bag Of Words
+### Bag Of Words
 
 Works pretty well for image-level classification, less okay for object detection because spatial layout gets lost and objects are with shape and boundaries
 
@@ -35,9 +33,9 @@ Present a data item (document, texture, image) as a histogram over features
 
 ##### **T**erm **F**requency **I**nverse **D**ocument **F**requency (TFIDF)
 
-$TF = n(w_i, d) =  { \#~of~w_i~appearance \over \#~of~all~word~d}$ 
+$TF = n(w_i, d) =  { \\#~of~w_i~appearance \over \\#~of~all~word~d}$ 
 
-$IDF = log \{ {D \over \sum_d' 1[w_i \in d']}\} = log \{ {\#~of~all~documents \over \#~of~all~documents ~has~this~word~w_i } \}$
+$IDF = log \{ {D \over \sum_d' 1[w_i \in d']}\} = log \{ {\\#~of~all~documents \over \\#~of~all~documents ~has~this~word~w_i } \}$
 
 $TFIDF = n(w_i, d)\alpha_i = n(w_i, d) log \{ {D \over \sum_d' 1[w_i \in d']}\} = TF * IDF$
 
@@ -76,8 +74,8 @@ If the training set is **sufficiently representative**, the codebook will be uni
 **Pros**
 
 - flexible to geometry / deformations / viewpoint
+- compact summary of image content
 
-+ compact summary of image content
 + provides fixed dimensional vector representation for sets
 + very good results in practice
 
@@ -87,7 +85,7 @@ If the training set is **sufficiently representative**, the codebook will be uni
 - optimal vocabulary formation remains unclear 
 - basic model ignores geometry – must verify afterwards, or encode it somehow within via features 
 
-#### kNN
+### kNN
 
 Important to **normalize**: dimensions have different scales
 
@@ -99,11 +97,11 @@ Hyper-parameters are highly problem-dependent, need to choose via validation dat
 
 **Cons** 
 
-- search is expensive (can be sped-up) - O(mn)
+- search is expensive (can be speed-up) - O(mn)
 - storage requirements - O(m)
 - difficulties with high-dimensional data - comparison of distance measure becomes more difficult with higher-dimensional data
 
-#### Spatial Reasoning
+### Spatial Reasoning
 
 1. Extract features
 
@@ -120,26 +118,26 @@ Hyper-parameters are highly problem-dependent, need to choose via validation dat
 - Computationally expensive
 - Generalization to **large** inter-class variation (e.g., modeling chairs) 
 
-#### Window Classification
+### Window Classification
 
-Template Matching
+##### Template Matching
 
 1. Get image window
 2. Extract features
 3. Compare with template
 
-**Pros** 
+##### Pros 
 
 - Retains spatial constraints
 - Can be highly discriminative 
 
-**Cons** 
+##### Cons 
 
 - Many many possible windows to evaluate
 - Requires large amounts of data
 - Sometimes (very) slow to train 
 
-#### Window-Based Object Detection Framework
+### Window-Based Object Detection Framework
 
 1. Build/train object model
    - Choose a representation
@@ -182,7 +180,7 @@ When it is simple, e.g. Viola-Jones, it is okay (and actually more efficient) to
 
 Often train different models for a few different viewpoints
 
-#### Support Vector Machines (SVM)
+### Support Vector Machines (SVM)
 
 **Maximum Margin solution:** most stable to perturbations of data
 
@@ -211,8 +209,12 @@ $A$ and $B$ are fitted based on classifier outputs (i.e. from validation data) s
 
 **Pros**
 
-- Widely available and built into virtually any machine learning package Kernel-based framework is very powerful, flexible 
+- Widely available and built into virtually any machine learning package 
+
+  Kernel-based framework is very powerful, flexible 
+
 - Compact model 
+
 - Work very well in practice, even with very small training sample sizes 
 
 **Cons**
@@ -223,7 +225,7 @@ $A$ and $B$ are fitted based on classifier outputs (i.e. from validation data) s
   - During training time, must compute matrix of kernel values for every pair of examples
   - Learning can take a very long time for large-scale problems 
 
-#### Dalal-Triggs Pedestrian Detector
+### Dalal-Triggs Pedestrian Detector
 
 applying SVMs to window-based object detection using HoG (histogram of oriented graidents).
 
@@ -256,7 +258,7 @@ applying SVMs to window-based object detection using HoG (histogram of oriented 
 
 4. Perform non-maxima suppression to remove overlapping detections with lower scores 
 
-##### Pedestrian detection with HOG 
+#### Pedestrian detection with HOG 
 
 - Learn a pedestrian template using a SVM
 - At test time, compare feature map with template over sliding windows.
@@ -297,7 +299,7 @@ applying SVMs to window-based object detection using HoG (histogram of oriented 
   - Sample negative examples that score > -1 
   - Repeat until all high-scoring negative examples fit in memory  
 
-#### Viola-Jones Face Detector
+### Viola-Jones Face Detector
 
 Slow to train but detection is very fast
 
@@ -316,7 +318,7 @@ Slow to train but detection is very fast
 
    In each boosting round:
 
-   - Find the weak classifier that achievesthe lowest *weighted* training error.
+   - Find the weak classifier that achieves the lowest *weighted* training error.
 
    - Raise the weights of training examples misclassified by current
      weak classifier.
@@ -348,7 +350,7 @@ Slow to train but detection is very fast
    
    Chain classifiers that are progressively more complex and have lower false positive rates
 
-##### Boosting vs. SVM
+### Boosting vs. SVM
 
 **Advantages of boosting** 
 

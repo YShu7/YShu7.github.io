@@ -54,7 +54,7 @@ Not invariant to rotation
 1. Divide image patch into 4x4 cells 
 2. Apply filter bank (Gabor filters) of directional edge detectors.
 3. Compute filter response averages for each cell. 
-4. Size of descriptoris 4x4xN, where N is size of the filter bank. 
+4. Size of descriptor is 4x4xN, where N is size of the filter bank. 
 
 GIST encoded rough spatial distribution of the image gradients!
 
@@ -102,9 +102,9 @@ even Gabor filter looks a lot like Laplacian (2nd derivative)
 
 #### Feature distance
 
-ratio distance = $\parallel f_1-f_2 \parallel / \parallel f1-f_2' \parallel$
+ratio distance = $\parallel f_1-f_2 \parallel / \parallel f_1-f_2' \parallel$
 
-matching SIFT descriptros: threshold ratio of nearest to 2nd nearest descriptor
+matching SIFT descriptors: threshold ratio of nearest to 2nd nearest descriptor
 
 ##### Evaluating Feature Matches
 
@@ -120,7 +120,7 @@ $AUC$ Area Under the Receiver Operator Characteristic (ROC) Curve, 1 is the bes
 
 **Filtering**: $G(x) = h\{F(x)\}$ Changes range of image function (pixel values)
 
-**Wrapp**: $G(x) = F(h\{x\})$ Changes domain of image function (pixel locations)
+**Wrapping**: $G(x) = F(h\{x\})$ Changes domain of image function (pixel locations)
 
 #### Homography
 
@@ -166,9 +166,9 @@ Given $\{x_i, x_i'\}$ solve for H such that $x' = Hx$
 
 Pixels may end up between two points
 
-To dtermine the intensity of each point, we distribute color among neighboring pixels
+To determine the intensity of each point, we distribute color among neighboring pixels
 
-If a pixel (x’,y’) receives intensity from more than one pixels (x,y), we average their intensity contributions.
+If a pixel (x’, y’) receives intensity from more than one pixels (x, y), we average their intensity contributions.
 
 ##### Drawbacks
 
@@ -185,7 +185,7 @@ If a pixel (x’,y’) receives intensity from more than one pixels (x,y), we av
 
 RANSAC loop
 
-1. Get (min4) point correspondences (randomly)
+1. Get (min 4) point correspondences (randomly)
 2. Compute H using DLT
 
 3. Count inliers
