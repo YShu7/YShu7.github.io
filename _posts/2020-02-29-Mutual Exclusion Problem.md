@@ -1,6 +1,6 @@
 ---
 title: Mutual Exclusion Problem
-tags: Parallel and Distributed Algorithm
+tags: [Parallel and Distributed Algorithm]
 ---
 
 ### Mutual Exclusion Problem
@@ -170,3 +170,8 @@ Process j will eventually set `choosing[j] = false`
 
 Process j will enventually finish and set `number[j] = 0`, process i will eventually has the smallest number.
 
+### Busy Wait Problem
+
+- Waste CPU cycles
+
+We want to release the CPU to other processes - Need OS support
