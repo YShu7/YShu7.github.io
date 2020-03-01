@@ -76,6 +76,16 @@ depth of **shallowest** (may not be optimal) goal node
 
 maximum depth of search tree (may be $\infin$)
 
+### Uninformed Search
+
+Uninformed search strategies use only the Information available in the problem definition
+
+- goal test
+- path cost
+- initial state
+- actions
+- transition model
+
 ### Breadth-First Search
 
 ##### Idea
