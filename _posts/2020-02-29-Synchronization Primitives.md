@@ -1,6 +1,7 @@
 ---
 title: Synchronization Primitives
 tags: [Parallel and Distributed Algorithm]
+mathjax: true
 ---
 
 ### Synchronization Primitives
@@ -21,9 +22,9 @@ To deal with busy wait problem
 Internally, each semaphores has
 
 - A boolean value - initially true
-- A queue of blocked processer - initially empty
+- A queue of blocked processes - initially empty
 
-```
+```java
 P():
 if (value == false) {
 	add myself to queue and block;
@@ -36,7 +37,7 @@ if (queue is not empty) {
 }
 ```
 
-The functions are executed atomically
+The functions are executed **atomically**
 
 **Exactly one process** is waken up in V()
 
@@ -58,7 +59,14 @@ Java only has monitors. Every object in Java is a monitor (has a monitor lock)
 Each monitor has two queues of blocked processes
 
 - monitor-queue
+
+  A queue of threads waiting for the lock associated with the monitor
+
 - wait-queue
+
+  A queue of threads waiting for some condition to become true
+
+  > Java does not have condition variables. Associated with each object there is a single wait queue for conditions
 
 ![image-20200229160525660](/assets/images/pd2-3.png)
 
@@ -80,9 +88,27 @@ P1: `object.notify()`
 
 **P0** takes over the execution
 
+One of the threads that was waiting on the condition variable continues execution.
+
+##### Advantage
+
+The thread that was notified on the condition starts its execution without intervention of any other thread
+
+On waking up, it can assume that the condition is true
+
+```
+if (!B) x.wait();
+```
+
 #### Java-style Monitor
 
 **P1** takes over the execution
+
+The thread that made the notify call continues its execution.
+
+```
+while (!B) x.wait();
+```
 
 No need to do context switch, more popular
 
@@ -116,7 +142,15 @@ synchronized(ObjA) { // This piece of code will block and will not reach ObjB.no
 
 ### Dining Philosopher Problem (Dijkstra'65)
 
-Avoid deadlock => Avoid cycles or have a total ordering of the chopsticks
+It's useful in bringing out issues associated with concurrent programming and symmetry.
+
+#### Avoid deadlock
+
+=> Avoid cycles or have a total ordering of the chopsticks
+
+- Requiring one of the philosophers to grab forks in a different order
+- Requiring philosophers to grab both the forks at the same time
+- Assume that a philosopher has to stand before grabbing any fork. Allow at most four philosophers to be standing at any given time.
 
 ![image-20200229160028007](/assets/images/pd2-1.png)
 
@@ -128,14 +162,18 @@ In this graph, **vertex** is representing **resources**.
 
 ### The Producer-Consumer Problem
 
-A circular buffer of size n
+A circular buffer of size $n$ in which $inBuf$ and $outBuf$ are incremented modulo $size$ to keep track of the slots for depositing and fetching items.
 
 A single producer and a single consumer
+
+#### Conditional Synchronization
+
+It requires a process to **wait for some condition to become true** (such as the buffer to become non-empty), before continuing its operations
 
 ##### Why circular buffer?
 
 1. Producer and consumer speed is different
-2. Not constant
+2. Producer and consumer speed is not constant
 
 ```Java
 void produce() {	

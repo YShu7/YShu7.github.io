@@ -1,11 +1,20 @@
 ---
 title: Consistency Conditions
 tags: [Parallel and Distributed Algorithm]
+mathjax: true
 ---
 
 ### Consistency
 
-##### Definition
+##### Correctness conditions of executions
+
+Which behaviors are correct when **multiple processes** invoke methods **concurrently** on a **shared object**
+
+##### Current object
+
+Allows **multiple processes** to execute its operations **concurrently**
+
+##### Consistency
 
 Consistency specifies **what behavior is allowed** when a shared object is accesses by multiple processes
 
@@ -20,13 +29,25 @@ Consistency specifies **what behavior is allowed** when a shared object is acces
 
 Mutual exclusion is actually a way to ensure consistency (based on some consistency definition)
 
+The notion of consistency is also required when objects are replicated in a parallel or a distributed system
+
+> There are two reasons for replicating objects:
+>
+> - Fault tolerance
+>
+>   If an object has multiple copies and a processor that contains one of the copies of the object goes down, the system may still be able to function correctly by using other copies.
+>
+> - Efficiency
+>
+>   Accessing a remote object may incur a large overhead because of communication delay. Suppose that we know that most accesses of the object are for read only. In this case, it may be better to replicate that object.
+
 ### Operation
 
 A single **invocation/response pair** of a single method of a single shared object by a process
 
 Two **invocation** events are the same if **invoker, invokee, parameters** are the same - inv(p, read, X)
 
-Two **response** events are the same if **invoker, invokee, response** arethe same - resp(p, read, X, 1)
+Two **response** events are the same if **invoker, invokee, response** are the same - resp(p, read, X, 1)
 
 ### History
 
@@ -36,6 +57,16 @@ For any invocation in H, the corresponding response is required to be in H
 
 Each execution of a parallel system corresponds to a history, and vice versa
 
+##### Definition
+
+A history is an execution of a concurrent system modeled by a directed acyclic graph $(H, <_H)$, where $H$ is the set of operations and $<_H$ is an irreflexive transitive relation that captures the occurred before relation between operations.
+
+$e<_Hf$ if $resp(e)$ occurred before $inv(f)$ in real time.
+
+##### Equivalency
+
+Composed of exactly the same set of invocation and response events.
+
 ### Sequential History and Concurrent History
 
 #### Sequential History
@@ -44,7 +75,11 @@ Each execution of a parallel system corresponds to a history, and vice versa
 
 Any invocation is always **immediately followed by** its response
 
+$<_H$ is a total order
+
 i.e. No interleaving
+
+Such a history would happen if there was only one sequential process in the system.
 
 #### Concurrent History
 
@@ -59,6 +94,8 @@ Otherwise called **concurrent**
 All responses satisfies the sequential semantics of the data type
 
 **Sequential semantics**: The semantics you would get if there is only one process accessing that data type.
+
+It meets the sequential specification of all the objects
 
 #### Subhistory
 
@@ -97,9 +134,11 @@ No other additional orderings
 1. The operations of all the processors were executed in some sequential order
 2. The operations of each individual processor appear in this sequence in the order specified by the program
 
-A history H is sequentially consistent if it is equivalent to some **legal sequential history** S that **preserves process order**
+A history H is sequentially consistent if it is equivalent to some **legal sequential history** S that **preserves process order**.
 
 ### Linearizability
+
+A partial history H is linearizable if there exists a way of completing the history by appending response events such that the complete history is linearizable.
 
 #### External order
 
@@ -122,9 +161,9 @@ The execution is equivalent to some execution such that each operation happens i
 
 Linearizability is arguable the **strongest form** of consistency people have ever defined.
 
-### Local Property
+#### Local Property
 
-Linearizability is a local property in the sense that H is linearizable iff for any **object** x, H|x is linearizable
+**Linearizability is a local property** in the sense that H is linearizable iff for all **object** x, H|x is linearizable
 
 Sequential consistency is not a local property
 
@@ -150,37 +189,18 @@ H|y = o3 o4 is legal for y
 
 S = o1 o3 o2 o4 is legal because o2's behavior will not change due to some value read in o3. The operations from different objects do not influence each other.
 
-### Registers
+### Casual Consistency
 
-Register is a kind of abstract data type: A single value that can be read and written
+Weaker than sequential consistency.
 
-An register is called **atomic** if the implementation always ensures linearizability of the history
+Allows for cheap read and write operations
 
-An register is called **??** is the implementation always ensures sequential consistency of the history
+##### A history H is causally consistent if
 
-#### Regular
+- for each process $P_i$, there is a legal sequential history $(S_i<s_i)$ where $S_i$ is the set of all operations of $P_i$ and all write operations in $H$, and $<s_i$ respects the following order
+- Process order: If $P_i$ performs operation $e$ before $f$, then $e$ is ordered before $f$ in $S_i$
+- Object order: If any process $P$ performs a write on an object $x$ with value $v$ and another process $Q$ reads that value $v$, then the write by $P$ is ordered before read by $Q$ in $S_i$
 
-A register is called **regular** if 
+#### Sequential consistency implies causal consistency
 
-- When a read **does not overlap** with any write, the read returns the value written by **one of the most recent writes**
-- When a read **overlaps with one or more writes**, the read returns the value written by **one of the most recent writes** or the value written by **one of the overlapping writes**
-
-**Most recent writes**: the write whose response time is the latest
-
-#### An atomic register must be regular
-
-An atomic register always ensures linearizibility. Thus it is equivalent to some legal sequential history S, and S preserved the external order in H. This ensures that read always return the value written by one of the most recent writes or if there is overlapping, can also return the vlaue written by one of the overlapping writes.
-
-##### Regular and sequential consistency do not imply each other
-
-#### Safe
-
-A register is called **safe** if 
-
-- When a read **does not overlap** with any write, then it returns the value written by **one of the most recent writes**
-
-- When a read **overlaps with one or more writes**, it can return **anything**
-
-##### A regular register must be safe
-
-##### Safe and sequential consistency do not imply each other
+We require only that there is a legal sequential history for every process and not one for the entire system
