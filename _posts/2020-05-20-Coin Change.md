@@ -1,6 +1,6 @@
 ---
 title: Coin Change
-tags: LeetCode [Dynamic Programming]
+tags: [LeetCode, Dynamic Programming]
 ---
 
 [322. Coin Change](https://leetcode.com/problems/coin-change/)

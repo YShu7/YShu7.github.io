@@ -1,6 +1,6 @@
 ---
 title: Unique Paths
-tags: LeetCode [Dynamic Programming]
+tags: [LeetCode, Dynamic Programming]
 ---
 
 [62. Unique Paths](https://leetcode.com/problems/unique-paths/)

@@ -1,6 +1,6 @@
 ---
 title: House Robber
-tags: LeetCode [Dynamic Programming]
+tags: [LeetCode, Dynamic Programming]
 ---
 
 [198. House Robber](https://leetcode.com/problems/house-robber/)

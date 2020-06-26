@@ -1,6 +1,6 @@
 ---
 title: Merge Two Sorted Lists
-tags: LeetCode [Linked List]
+tags: [LeetCode, Linked List]
 ---
 
 [21. Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)

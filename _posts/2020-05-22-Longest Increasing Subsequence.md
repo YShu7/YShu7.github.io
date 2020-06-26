@@ -1,6 +1,6 @@
 ---
 title: Longest Increasing Subsequence
-tags: LeetCode [Dynamic Programming]
+tags: [LeetCode, Dynamic Programming]
 mathjax: true
 ---
 

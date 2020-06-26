@@ -1,6 +1,6 @@
 ---
 title: Climbing Stairs
-tags: LeetCode [Dynamic Programming]
+tags: [LeetCode, Dynamic Programming]
 ---
 
 [70. Climbing Stairs](https://leetcode.com/problems/climbing-stairs/)
