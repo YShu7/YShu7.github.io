@@ -1,6 +1,6 @@
 ---
 title: Kadane's Algorithms
-tags: LeetCode
+tags: LeetCode [Kadane's Algorithm]
 ---
 
 #### Features

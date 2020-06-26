@@ -1,23 +1,28 @@
 ---
-title: Symmetric Tree
-tags: LeetCode, [Tree], [DFS & BFS]
+title: Diameter of Binary Tree
+tags: LeetCode, Tree
 ---
 
-[101. Symmetric Tree](https://leetcode.com/problems/symmetric-tree/)
+[543. Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/)
 #### Solution 
-Check symmetrically
+1. The same as 1 + left tree's height + right tree's height  
+1. Keep a variable to track the current longest path  
+1. As we checking each node's height, the variable will get updated and store the maximum value in the end.  
 ```python
-def isSymmetric(self, root):
+def diameterOfBinaryTree(self, root):
     """
     :type root: TreeNode
-    :rtype: bool
+    :rtype: int
     """
-    def isSym(left, right):
-        if left is None and right is None:
-            return True
-        if left and right and (left.val == right.val):
-            return isSym(left.right, right.left) and isSym(left.left, right.right)
-        return False
+    self.ans = 0
+    self.depth(root)
+    return self.ans
     
-    return isSym(root, root)
+def depth(self, root):
+    if root is None:
+        return 0
+    left = self.depth(root.left)
+    right = self.depth(root.right)
+    self.ans = max(self.ans, left + right)
+    return 1 + max(left, right)
 ```

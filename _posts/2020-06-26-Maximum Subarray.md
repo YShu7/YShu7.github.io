@@ -1,26 +1,23 @@
 ---
-title: Word Break
-tags: LeetCode, [Dynamic Programming]
+title: Maximum Subarray
+tags: LeetCode [Dynamic Programming], [Kadane's Algorithm]
 ---
 
-[139. Word Break](https://leetcode.com/problems/word-break/)
+[53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)
 #### Solution 
-1. Check if the word can be broke up to an index `i`.  
-1. For any substring end at `i`, we check if there exists any breakable word end at `j` can be combined with a word in 
-`wordDict` to form it.
-> `j < i` because of DP.  
-> `j > i - max_len` because the prefix word needs to be long enough.  
+1. Consider the sequence as family, the previous one is the next one's father.  
+2. To make the last child have most money, we will only inherit wealth but not debt.  
+3. If the father has sum > 0, the child get it, otherwise the child restart his own life.  
 ```python
-def wordBreak(self, s, wordDict):
+def maxSubArray(self, nums):
     """
-    :type s: str
-    :type wordDict: List[str]
-    :rtype: bool
+    :type nums: List[int]
+    :rtype: int
     """
-    breakable = [True]
-    max_len = max(map(len,wordDict+['']))
-
-    for i in range(1, len(s)+1):
-        breakable += any(breakable[j] and s[j:i] in wordDict for j in range(max(0, i-max_len),i)),
-    return breakable[-1]
+    curr_max = nums[0]
+    res = curr_max
+    for i, num in enumerate(nums[1:]):
+        curr_max = max(num, curr_max + num)
+        res = max(curr_max, res)
+    return res
 ```

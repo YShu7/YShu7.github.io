@@ -1,6 +1,6 @@
 ---
 title: Combination Sum IV
-tags: LeetCode, [Dynamic Programming]
+tags: LeetCode [Dynamic Programming]
 ---
 
 [377. Combination Sum IV](https://leetcode.com/problems/combination-sum-iv/)

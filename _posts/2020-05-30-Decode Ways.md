@@ -1,6 +1,6 @@
 ---
 title: Decode Ways
-tags: LeetCode, [Dynamic Programming]
+tags: LeetCode [Dynamic Programming]
 ---
 
 [91. Decode Ways](https://leetcode.com/problems/decode-ways/)

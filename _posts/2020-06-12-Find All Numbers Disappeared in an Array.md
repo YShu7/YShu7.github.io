@@ -1,32 +1,26 @@
 ---
-title: Merge Two Sorted Lists
-tags: LeetCode, [Linked List]
+title: Find All Numbers Disappeared in an Array
+tags: LeetCode
 ---
 
-[21. Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)
+[448. Find All Numbers Disappeared in an Array](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/)
 #### Solution 
-1. Keep 3 pointer, 1 for l1, 1 for l2 and 1 for the merged list.
+1. Since the array contians number in range [1, n], we can use their value as index to track the information.
 
-1. When l1 or l2 has reached to the end, link the other one directly to the merged list, without copying the value.
+1. When a number is visited, we mark the value it is point to negative.
+
+1. The positive number's index disappeared in the array.
+
+[Solution](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/discuss/92955/Python-4-lines-with-short-explanation)
 ```python
-def mergeTwoLists(self, l1, l2):
-    while l1 is not None and l2 is not None:
-        if l1.val < l2.val:
-            tmp = l1.next
-            ptr.next = ListNode(l1.val)
-            ptr = ptr.next
-            l1 = tmp
-        else:
-            tmp = l2.next
-            ptr.next = ListNode(l2.val)
-            ptr = ptr.next
-            l2 = tmp
-        
-    if l1 is None and l2 is not None:
-        ptr.next = l2
-            
-    if l2 is None and l1 is not None:
-        ptr.next = l1
-                
-    return start.next
+def findDisappearedNumbers(self, nums):
+    """
+    :type nums: List[int]
+    :rtype: List[int]
+    """
+    for i in xrange(len(nums)):
+        index = abs(nums[i]) - 1
+        nums[index] = - abs(nums[index])
+
+    return [i + 1 for i in range(len(nums)) if nums[i] > 0]
 ```
