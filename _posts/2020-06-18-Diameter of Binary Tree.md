@@ -1,6 +1,6 @@
 ---
 title: Diameter of Binary Tree
-tags: LeetCode, Tree
+tags: [LeetCode, Tree]
 ---
 
 [543. Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/)
