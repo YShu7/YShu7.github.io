@@ -1,6 +1,6 @@
 ---
 title: Maximum Subarray
-tags: [LeetCode, Dynamic Programming], [Kadane's Algorithm]
+tags: [LeetCode, Dynamic Programming, Kadane's Algorithm]
 ---
 
 [53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)

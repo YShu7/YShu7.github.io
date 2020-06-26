@@ -1,6 +1,6 @@
 ---
 title: Best Time to Buy and Sell Stock
-tags: [LeetCode, Dynamic Programming], [Kadane's Algorithm]
+tags: [LeetCode, Dynamic Programming, Kadane's Algorithm]
 ---
 
 [121. Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
