@@ -1,6 +1,6 @@
 ---
 title: Intersection of Two Linked Lists
-tags: [LeetCode, Linked List, *]
+tags: [LeetCode, Linked List]
 ---
 
 [160.  Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/)

@@ -1,6 +1,6 @@
 ---
 title: Palindrome Linked List
-tags: [LeetCode, Linked List, Two Pointers, *]
+tags: [LeetCode, Linked List, Two Pointers]
 ---
 
 [234. Palindrome Linked List](https://leetcode.com/problems/palindrome-linked-list/)
