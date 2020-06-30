@@ -1,5 +1,5 @@
 ---
-title:  Intersection of Two Linked Lists
+title: Intersection of Two Linked Lists
 tags: [LeetCode, Linked List, *]
 ---
 

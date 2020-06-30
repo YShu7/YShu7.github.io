@@ -1,5 +1,5 @@
 ---
-title:  Palindrome Linked List
+title: Palindrome Linked List
 tags: [LeetCode, Linked List, Two Pointers, *]
 ---
 
