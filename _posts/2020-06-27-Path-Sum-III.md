@@ -1,6 +1,6 @@
 ---
 title: Path Sum III
-tags: [LeetCode, Tree]
+tags: [LeetCode, Tree, *]
 mathjax: true
 ---
 
