@@ -1,25 +1,31 @@
 ---
-title: Counting Bits
+title: Queue Reconstruction by Height
 tags: [LeetCode]
 ---
 
-[338. Counting Bits](https://leetcode.com/problems/counting-bits/)
+[406. Queue Reconstruction by Height](https://leetcode.com/problems/queue-reconstruction-by-height/)
 #### Solution 
-1. Use the characteristic of odd and even numbers, i.e. odd number end with 1 and even number end with 0.
+1. Consider the shortest person, his `k` is the index he should be at.
 
-1. Can use `num // 2` as memory.
+1. For the other people, use the same idea. Keep `None` to represent 'empty'.
 
-[Solution](https://leetcode.com/problems/counting-bits/discuss/700961/Python3-DP-solution-by-utilizing-power-of-bitwise-operations)
 ```python
-def countBits(self, num):
+def reconstructQueue(self, people):
     """
-    :type num: int
-    :rtype: List[int]
+    :type people: List[List[int]]
+    :rtype: List[List[int]]
     """
-    bitCountList = [0]
-
-    for i in range(1, num + 1):
-        bitCountList.append(bitCountList[i >> 1] + (i & 1))
-
-    return bitCountList
+    people.sort()
+    empty = [None, None]
+    res = [empty] * len(people)
+    for p in people:
+        space = 0
+        i = 0
+        while res[i] != empty or space != p[1]:
+            r = res[i]
+            if r == empty or r[0] >= p[0]:
+                space += 1
+            i += 1
+        res[i] = p
+    return res
 ```

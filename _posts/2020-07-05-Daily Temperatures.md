@@ -1,31 +1,24 @@
 ---
-title: Queue Reconstruction by Height
+title: Daily Temperatures
 tags: [LeetCode]
 ---
 
-[406. Queue Reconstruction by Height](https://leetcode.com/problems/queue-reconstruction-by-height/)
+[739. Daily Temperatures](https://leetcode.com/problems/daily-temperatures/)
 #### Solution 
-1. Consider the shortest person, his `k` is the index he should be at.
-
-1. For the other people, use the same idea. Keep `None` to represent 'empty'.
+1. When a warmer temperature comes in, pop all temperature before and lower than it.
 
 ```python
-def reconstructQueue(self, people):
+def dailyTemperatures(self, T):
     """
-    :type people: List[List[int]]
-    :rtype: List[List[int]]
+    :type T: List[int]
+    :rtype: List[int]
     """
-    people.sort()
-    empty = [None, None]
-    res = [empty] * len(people)
-    for p in people:
-        space = 0
-        i = 0
-        while res[i] != empty or space != p[1]:
-            r = res[i]
-            if r == empty or r[0] >= p[0]:
-                space += 1
-            i += 1
-        res[i] = p
+    stack = []
+    res = [0] * len(T)
+    for i, t in enumerate(T):
+        while stack and stack[-1][1] < t:
+            idx, prev = stack.pop()
+            res[idx] = i - idx
+        stack.append((i, t))
     return res
 ```
