@@ -1,6 +1,6 @@
 ---
 title: Symmetric Tree
-tags: [LeetCode, Tree, DFS, BFS, -]
+tags: [LeetCode, Tree, DFS, BFS]
 ---
 
 [101. Symmetric Tree](https://leetcode.com/problems/symmetric-tree/)
