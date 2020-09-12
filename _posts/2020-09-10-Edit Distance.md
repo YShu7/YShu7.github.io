@@ -1,6 +1,6 @@
 ---
 title: Edit Distance
-tags: [LeetCode]
+tags: [LeetCode, Dynamic Programming]
 ---
 
 [72. Edit Distance](https://leetcode.com/problems/edit-distance/)

@@ -1,6 +1,6 @@
 ---
 title: Trapping Rain Water
-tags: [LeetCode]
+tags: [LeetCode, Two Pointers]
 ---
 
 [42. Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)
