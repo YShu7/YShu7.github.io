@@ -4,6 +4,16 @@ tags: [LeetCode]
 ---
 
 [1585. Check If String Is Transformable With Substring Sort Operations](https://leetcode.com/problems/check-if-string-is-transformable-with-substring-sort-operations/)  
+
+Given two strings s and t, you want to transform string s into string t using the following operation any number of times:
+
+Choose a non-empty substring in s and sort it in-place so the characters are in ascending order.
+For example, applying the operation on the underlined substring in "14234" results in "12344".
+
+Return true if it is possible to transform string s into string t. Otherwise, return false.
+
+A substring is a contiguous sequence of characters within a string.
+
 #### Solution  
 [Solution](https://leetcode.com/problems/check-if-string-is-transformable-with-substring-sort-operations/discuss/843954/Python-short-solution-detailed-comments-O(N)-w-stack-trick)
 
