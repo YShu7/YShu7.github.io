@@ -12,3 +12,37 @@ Given two lists, scores and ages, where each scores[i] and ages[i] represents th
 
 #### Solution - DP  
 [Solution](https://leetcode.com/problems/best-team-with-no-conflicts/discuss/899475/Fairly-easy-DP)
+1. Sort the players by their age in the descending order.
+
+1. For any player i, we can choose any player from 0 to i-1 as long as that player has higher score than this i-th player.
+
+1. `dp[i]` stores the maximum score that can be obtained when i-th player is included and all other players are between indices 0 and i-1.
+
+```c++
+class Solution {
+public:
+    int bestTeamScore(vector<int>& scores, vector<int>& ages) {
+        vector<pair<int, int>> players;
+        int n = scores.size();
+        for (int i=0; i<n; i++) {
+            players.push_back({ages[i], scores[i]});
+        }
+        sort(players.begin(), players.end(), greater<>());
+        
+        int ans = 0;
+        vector<int> dp(n);
+        for (int i=0; i<n; i++) {
+            int score = players[i].second;
+            dp[i] = score;
+            for (int j=0; j<i; j++) {
+                if (players[j].second >= players[i].second) { // age of j is certainly >= i, so only important part to check 
+													          //  before we add i and j in the same team is the score.
+                    dp[i] = max(dp[i], dp[j] + score);
+                }
+            }
+            ans = max(ans, dp[i]);
+        }
+        return ans;
+    }
+};
+```
