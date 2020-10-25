@@ -27,6 +27,7 @@ def numberOfSets(self, n, k):
     return math.comb(n + k - 1, k * 2) % (10**9 + 7)
 ```
 #### Solution - DP  
+[Solution](https://leetcode.com/problems/number-of-sets-of-k-non-overlapping-line-segments/discuss/901894/JavaPython-Top-Down-DP-Clean-and-Concise-O(4*n*k))
 ```python
 def numberOfSets(self, n: int, k: int) -> int:
     MOD = 10**9 + 7
